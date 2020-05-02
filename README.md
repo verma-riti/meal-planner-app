@@ -22,7 +22,7 @@
 
 
         - Run project locally
-        `python manage.py runserver --settings=config.settings.local`
+        `python manage.py runserver
 
         - Run project on staging server
         `python manage.py runserver --settings=config.settings.base`
@@ -40,7 +40,7 @@
 
     ## Clone the Repository
         `git clone https://github.com/riti12345/token_based_authentication.git`
-        
+
     ## install all the npm files and run on local server
     `npm i && npm start`
 
