@@ -13,7 +13,8 @@ class Login extends Component {
           password: '',
           isloggedIn:false,
           token: '',
-          is_admin:false
+          is_admin:false,
+          headers: ''
         };
       }
 
@@ -23,10 +24,16 @@ class Login extends Component {
 
       onSubmit = (e) => {
         e.preventDefault();
+        let headers = ''
         const { username, password } = this.state;
         this.state.token = localStorage.getItem('token');
-        const headers = { 'Content-Type': 'application/json',
+        if(this.state.token){
+          headers = { 'Content-Type': 'application/json',
                       'Authorization': `Token ${this.state.token}`}
+        }else {
+          headers = { 'Content-Type': 'application/json'}
+        }
+        
 
         axios.post('http://localhost:8000/login/', { username, password }, { headers })
           .then(function (response) {

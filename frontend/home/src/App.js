@@ -5,6 +5,7 @@ import SignUp from './components/signup';
 import Login from './components/login';
 import GetMeals from './components/getmeals';
 import AddMeals from './components/addmeals';
+import EditMeals from './components/editmeal';
 import {Switch, Link, Route, Redirect} from 'react-router-dom';
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
     {
       pageLink: '/addmeal',
       view: AddMeals
+    },
+    {
+      pageLink: '/editmeal',
+      view: EditMeals
     }
   ];
 

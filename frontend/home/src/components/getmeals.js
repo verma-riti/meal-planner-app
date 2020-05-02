@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link} from 'react-router-dom';
 import AddMeals from './addmeals';
 import Search from './search';
+import Login from './login';
 
 
 function GetMeals(props) {
@@ -33,13 +34,13 @@ function GetMeals(props) {
       )
   }, [])
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
-    return <div>Loading...</div>;
-  } else {
-    return (
+  const [token] = useState(localStorage.getItem('token'));
+if (token) {
+  return (
         <div className="profile-page">
+          <div>
+            <h1>Welcome To Your Meal Details</h1>
+          </div>
           <div className="add_meals">
             <Link to="/addmeal" className="btn btn-primary">&nbsp;<button type="submit">
             Add new Meals</button></Link>
@@ -59,8 +60,16 @@ function GetMeals(props) {
                   <tr>
                     <td>{item.meal_name}</td>
                     <td>{item.calories}</td>
-                    <td >{item.created_date}</td>
-                    <td>Edit</td>
+                    <td >{item.created_at}</td>
+                    <td><Link to="/editmeal" onClick={({target}) => {
+                      if(item.is_admin) {
+                        localStorage.setItems('meal_id', `{item.id}`)
+                      }else{
+                        alert("you dont have admin permission")
+                      }
+                  }}>Edit</Link>
+                      <span>&nbsp; &nbsp;Delete</span>
+                  </td>
                   </tr>
                  ))
                 }
@@ -68,6 +77,13 @@ function GetMeals(props) {
           </table>
         </div>
     );
+  } 
+  else {
+    return (
+    <div className="App">
+        <Login />
+    </div>
+   )
   }
 }
 
