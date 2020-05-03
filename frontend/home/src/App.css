@@ -99,6 +99,7 @@
   box-sizing: border-box;
   font-size: 14px;
 }
+
 .search_btn{
   width: 100px !important;
   margin: 20px;
@@ -142,10 +143,16 @@
 .profile-page .add_meals {
   width: 300px;
   float: right;
-  margin: 20px 0px 20px 20px;
+  margin: 0px;
   border-radius: 10px;
 }
 
 .profile-page .add_meals button{
   border-radius: 10px;
+}
+
+.my_profile{
+  display: inline-block;
+    float: left;
+    margin: 20px;
 }

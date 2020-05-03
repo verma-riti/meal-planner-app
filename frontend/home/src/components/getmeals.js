@@ -18,23 +18,7 @@ function GetMeals(props) {
   useEffect(() => {
    const token = localStorage.getItem('token');
    setIsAdmin(localStorage.getItem('is_admin'));
-    if(token){
-      const user_id = localStorage.getItem('user_id');
-      const url = "http://localhost:8000/get_meals?user_id="+user_id;
-      fetch(url)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log(result.Meals)
-          setIsLoaded(true);
-          setItems(result.Meals);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-    }else {
+   
       fetch("http://localhost:8000/get_meals")
       .then(res => res.json())
       .then(
@@ -48,7 +32,6 @@ function GetMeals(props) {
           setError(error);
         }
       )
-    }
   }, [])
 
 
@@ -84,9 +67,7 @@ function GetMeals(props) {
   let [user_id] = useState(localStorage.getItem('user_id'))
   return (
         <div className="profile-page">
-          <div>{token ? <h1>Welcome To Your Meal Details</h1>
-                      : <h1>List of All the meals</h1>
-                } 
+          <div><h1>List of All the meals</h1>
           </div>
           <div className="search">
               <form className="search_form">
@@ -120,9 +101,14 @@ function GetMeals(props) {
 
 
             {token ?
+                    <div>
+                    <div className="my_profile">
+                      <Link to="/profile"> My Profile </Link>
+                    </div>
                     <div className="add_meals">
                             <Link to="/addmeal" className="btn btn-primary">&nbsp;<button type="submit">
                             Add new Meals</button></Link>
+                    </div>
                     </div>
                   :
                     <p></p>
