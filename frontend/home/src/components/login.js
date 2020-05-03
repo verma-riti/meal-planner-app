@@ -14,7 +14,8 @@ class Login extends Component {
           isloggedIn:false,
           token: '',
           is_admin:false,
-          headers: ''
+          headers: '',
+          user_id:''
         };
       }
 
@@ -40,6 +41,7 @@ class Login extends Component {
           console.log(response.status);
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('is_admin', response.data.is_admin);
+          localStorage.setItem('user_id', response.data.user_id);
           this.state.is_admin = response.data.is_admin;
           this.setState({ isloggedIn: true });
       })

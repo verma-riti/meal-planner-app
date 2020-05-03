@@ -26,15 +26,21 @@ class SignUpView(APIView):
 class LoginView(APIView):
 	def post(self, request, format='json'):
 		print('request.data', request.data)
+		is_admin = False
 		username = request.data.get('username', '')
 		password = request.data.get('password', '')
 		user = authenticate(username=username, password=password)
 		print('user =', user)
 		token, created = Token.objects.get_or_create(user_id=user.id)
-		is_admin = Admin.objects.filter(user=user)
+		try:
+			admin = Admin.objects.filter(user=user)
+			admin.is_admin
+		except:
+			is_admin = False
 		print('token =', token)
 		data = {
 				'username':user.username,
+				'user_id':user.id,
 				'email': user.email,
 				'token':token.key,
 				'is_admin': is_admin

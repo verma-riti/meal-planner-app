@@ -14,12 +14,24 @@ class EditMeal extends Component {
           token: '',
           meal_id:''
         };
+        this.state.meal_id = localStorage.getItem('meal_id');
+        const user_id = localStorage.getItem('user_id');
+        const url = "http://localhost:8000/get_meals?meal_id="+ this.state.meal_id +"&user_id="+user_id
+         fetch(url)
+          .then(function (response) {
+          console.log(response);
+          this.state.meal_name=response.Meals.meal_name;
+          this.state.calories=response.Meals.calories;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       }
 
       onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
         this.state.token = localStorage.getItem('token');
-        this.state.meal_id = localStorage.getItem('meal_id');
+        
       }
 
       onSubmit = (e) => {
@@ -28,7 +40,7 @@ class EditMeal extends Component {
         const headers = { 'Content-Type': 'application/json',
                       'Authorization': `Token ${this.state.token}`}
 
-        axios.post('http://localhost:8000/update_meal/'`${this.state.meal_id}`, { meal_name, calories }, { headers })
+        axios.put('http://localhost:8000/update_meal/'+this.state.meal_id, { meal_name, calories }, { headers })
           .then(function (response) {
           console.log(response.status);
       })
@@ -49,14 +61,14 @@ class EditMeal extends Component {
                     type="text"
                     placeholder="Enter meal name"
                     name="meal_name"
-                    value={meal_name}
+                    value={this.state.meal_name}
                     onChange={this.onChange}
                   />
                   <input
                     type="text"
                     placeholder="Enter Calories"
                     name="calories"
-                    value={calories}
+                    value={this.state.calories}
                     onChange={this.onChange}
                   />
                   <button type="submit">Save</button>

@@ -27,5 +27,5 @@ class SignUpSerializer(serializers.ModelSerializer):
 class MealsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Meals
-        fields = ['id', 'user', 'meal_name', 'calories', 'created_date']
+        fields = ['id', 'user', 'meal_name', 'calories', 'created_at']
 

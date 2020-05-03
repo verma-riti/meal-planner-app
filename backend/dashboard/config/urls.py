@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from api.views.authentication import SignUpView, LoginView, LogoutView
-from api.views.meals import get_meals, add_meal, update_meal, delete_meal
+from api.views.meals import get_meals, add_meal, update_meal, delete_meal, search_meals
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^logout/', LogoutView.as_view()),
     url(r'^get_meals', get_meals),
     url(r'^add_meal/', add_meal),
-    url(r'^update_meal/<int:meal_id>', update_meal),
-    url(r'^delete_meal/<int:meal_id>', delete_meal),
+    url(r'^search_meals/', search_meals),
+    url(r'^update_meal/(?P<meal_id>\d+)/$', update_meal),
+    url(r'^delete_meal/(?P<meal_id>\d+)/$', delete_meal),
 ]
