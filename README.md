@@ -54,4 +54,10 @@
         1. User can Add meals (he/she can be able see the add meal button )
         2. User can edit or delete his/her meals (he/she will be able to see edit/delete button) 
         3. User can not edit or delete others meals (in actions buttons he will see you don't have permissions button)
+        4. USer can search the meals
+
+    User's profile : 
+        1. User can access his profile if he/she is logged 
+        2. If user is logged in he/she can see all his/her meals 
+        3. User can edit and delete his/her meal
 
