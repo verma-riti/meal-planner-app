@@ -1,4 +1,4 @@
-## Tata aig
+
 ###Purpose of this project is token based authentication and maintain the user's daily meal plan .
 
 ##PRoject setup Backend
