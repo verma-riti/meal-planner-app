@@ -57,4 +57,7 @@
         1. User can access his profile if he/she is logged 
         2. If user is logged in he/she can see all his/her meals 
         3. User can edit and delete his/her meal
+        
+ <img src="frontend/home/public/home.png" />
+        
 
